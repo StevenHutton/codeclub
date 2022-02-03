@@ -33,6 +33,15 @@ Circle :: struct {
 	r : float32;
 }
 
+/* - I could, instead, have written the below. But with using I can refer to the point directly with some_circle.p and can pass Circles to functions that would take Points
+   - It's really just context for the compiler and convenience for me. There's no real use case for this here I'm just having fun.
+Circle :: struct {
+	x : float32;
+	y : float32;
+	r : float32;
+}
+*/
+
 Generate_Points :: (points : []Point)
 {
 	for *points {
