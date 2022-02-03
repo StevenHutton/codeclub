@@ -3,6 +3,8 @@
 #import "PCG";
 #import "Machine_X64";
 
+//the #expand keyword makes this a macro it tells the compiler insert this text including the resolved code block at compile time.
+//macro syntax in jai is just the normal language syntax.
 timer_macro :: (code : Code) -> s64 #expand {
 	begin_counter, end_counter, perf_frequency : s64;
 	begin_cycle_count, end_cycle_count : u64;
@@ -42,12 +44,13 @@ Generate_Points :: (points : []Point)
 Generate_Circles :: (circles : []Circle)
 {
 	for *circles {
-		it.x = cast(float32)random_get_within_bound(500);
+		it.x = cast(float32)random_get_within_bound(500);//this line works because of the "using" keyword in line 32. I can access the members of Point directly
 		it.y = cast(float32)random_get_within_bound(500);
 		it.r = cast(float32)(random_get_within_bound(499)+1);
 	}
 }
 
+//unnecessary function imo - probably just remove this and inline the code.
 Test_Collision :: (c : Circle, p : Point) -> bool
 {
 	x_delta := c.x - p.x;
