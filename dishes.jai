@@ -62,24 +62,24 @@ sum_of_series :: (terms : []int) -> int
 	return result;
 }
 
+	
+/*Notes - 
+an array view is basically a struct with two fields
+count: s64;
+data : *some_type; //a pointer to the array data in memory
+we remove the first term by decrementing the count and incrementing the pointer. Easy!
+*/  
 solve :: (values : []int)
 {
 	values_local := values;
-  //sort array ascending
+  	//sort array ascending
 	insertion_sort(values_local, (a,b) => a-b);
 	answer_found := false;
 	
 	for 0..values_local.count-1 {
-    //if the sum of all terms is positive then removing any more negative terms won't improve the solution.
+    		//if the sum of all terms is positive then removing any more negative terms won't improve the solution.
 		if sum_of_all_terms(values_local) >= 0
-			break;
-		
-    /*remove the first term from the array-view.
-      an array view is basically a struct with two fields
-      count: s64;
-      data : *some_type; //a pointer to the array data in memory
-      we remove the first term by decrementing the count and incrementing the pointer. Easy!
-    */  
+			break;	
 		values_local.count -=1;
 		values_local.data += 1;
 	}
